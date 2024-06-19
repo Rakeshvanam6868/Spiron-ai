@@ -40,7 +40,7 @@ export const UserRegistrationSchema: ZodType<UserRegistrationProps> = z
     path: ['confirmEmail'],
   })
 
-{/*export type UserLoginProps = {
+export type UserLoginProps = {
   email: string
   password: string
 }
@@ -77,4 +77,4 @@ export const ChangePasswordSchema: ZodType<ChangePasswordProps> = z
   .refine((schema) => schema.password === schema.confirmPassword, {
     message: 'passwords do not match',
     path: ['confirmPassword'],
-  }) */}
+  }) 
