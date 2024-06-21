@@ -20,7 +20,7 @@ const SubscriptionForm = ({ plan }: Props) => {
         <div className="flex flex-col gap-3">
           <SubscriptionCard
             title="STANDARD"
-            description="Perfect if you’re just getting started with Corinna AI"
+            description="Perfect if you’re just getting started with Spiron AI"
             price="0"
             payment={payment}
             onPayment={onSetPayment}
