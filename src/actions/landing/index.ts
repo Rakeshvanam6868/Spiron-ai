@@ -11,10 +11,16 @@ export const onGetBlogPosts = async () => {
       createdAt: Date
     }[] = []
     const postsUrl = process.env.CLOUDWAYS_POSTS_URL
-    if (!postsUrl) return
+    if (!postsUrl) {
+      console.error('CLOUDWAYS_POSTS_URL is not set. Skipping blog post fetch.')
+      return []
+    }
     const posts = await axios.get(postsUrl)
     const featuredImages = process.env.CLOUDWAYS_FEATURED_IMAGES_URL
-    if (!featuredImages) return
+    if (!featuredImages) {
+      console.error('CLOUDWAYS_FEATURED_IMAGES_URL is not set. Skipping image fetch.')
+      return []
+    }
 
     let i = 0
     while (i < posts.data.length) {
