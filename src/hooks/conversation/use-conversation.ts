@@ -12,7 +12,7 @@ import {
   ConversationSearchSchema,
 } from '@/schemas/conversation.schema'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { useEffect, useRef, useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import { useForm } from 'react-hook-form'
 
 export const useConversation = () => {
@@ -78,7 +78,7 @@ export const useChatTime = (createdAt: Date, roomId: string) => {
   const [messageSentAt, setMessageSentAt] = useState<string>()
   const [urgent, setUrgent] = useState<boolean>(false)
 
-  const onSetMessageRecievedDate = () => {
+  const onSetMessageRecievedDate = useCallback(() => {
     const dt = new Date(createdAt)
     const current = new Date()
     const currentDate = current.getDate()
@@ -96,22 +96,22 @@ export const useChatTime = (createdAt: Date, roomId: string) => {
     } else {
       setMessageSentAt(`${date} ${getMonthName(month)}`)
     }
-  }
+  }, [createdAt])
 
-  const onSeenChat = async () => {
+  const onSeenChat = useCallback(async () => {
     if (chatRoom == roomId && urgent) {
       await onViewUnReadMessages(roomId)
       setUrgent(false)
     }
-  }
+  }, [chatRoom, roomId, urgent])
 
   useEffect(() => {
     onSeenChat()
-  }, [chatRoom])
+  }, [onSeenChat])
 
   useEffect(() => {
     onSetMessageRecievedDate()
-  }, [])
+  }, [onSetMessageRecievedDate])
 
   return { messageSentAt, urgent, onSeenChat }
 }
@@ -147,7 +147,7 @@ export const useChatWindow = () => {
         pusherClient.unsubscribe(chatRoom)
       }
     }
-  }, [chatRoom])
+  }, [chatRoom, setChats])
 
   const onHandleSentMessage = handleSubmit(async (values) => {
     try {

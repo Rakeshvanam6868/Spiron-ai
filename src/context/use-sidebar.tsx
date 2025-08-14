@@ -35,20 +35,20 @@ const useSideBar = () => {
     }
   }
 
-  const onGetCurrentMode = async () => {
+  const onGetCurrentMode = React.useCallback(async () => {
     setLoading(true)
     const mode = await onGetConversationMode(chatRoom!)
     if (mode) {
       setRealtime(mode.live)
       setLoading(false)
     }
-  }
+  }, [chatRoom])
 
   useEffect(() => {
     if (chatRoom) {
       onGetCurrentMode()
     }
-  }, [chatRoom])
+  }, [chatRoom, onGetCurrentMode])
 
   const page = pathname.split('/').pop()
   const { signOut } = useClerk()
