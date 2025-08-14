@@ -20,3 +20,5 @@ const Page = (props: Props) => {
 }
 
 export default Page
+
+export const dynamic = 'force-dynamic'
