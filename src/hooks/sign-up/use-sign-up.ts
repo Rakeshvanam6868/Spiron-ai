@@ -6,7 +6,7 @@ import {
 } from '@/schemas/auth.schema'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useSignUp } from '@clerk/nextjs'
-import { useRouter } from 'next/navigation'
+import { useRouter, useSearchParams } from 'next/navigation'
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { onCompleteUserRegistration } from '@/actions/auth'
@@ -16,6 +16,7 @@ export const useSignUpForm = () => {
   const [loading, setLoading] = useState<boolean>(false)
   const { signUp, isLoaded, setActive } = useSignUp()
   const router = useRouter()
+  const searchParams = useSearchParams()
   const methods = useForm<UserRegistrationProps>({
     resolver: zodResolver(UserRegistrationSchema),
     defaultValues: {
@@ -77,7 +78,8 @@ export const useSignUpForm = () => {
             })
 
             setLoading(false)
-            router.push('/dashboard')
+            const redirectUrl = searchParams.get('redirect_url') || '/dashboard'
+            router.replace(redirectUrl)
           }
 
           if (registered?.status == 400) {

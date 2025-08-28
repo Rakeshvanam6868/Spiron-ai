@@ -47,8 +47,11 @@ export default async function Home() {
             Your AI powered sales assistant! Embed Spiron AI into any website
             with just a snippet of code!
           </p>
-          <Button className="bg-orange font-bold text-white px-4">
+          
+          <Button className="bg-orange font-bold text-white px-4" >
+            <Link rel="stylesheet" href="/dashboard">
             Start For Free
+            </Link>
           </Button>
           <Image
             src="/images/iphonecorinna.png"
@@ -99,7 +102,7 @@ export default async function Home() {
                 ))}
               </div>
               <Link
-                href={`/dashbord?plan=${card.title}`}
+                href={`/dashboard?plan=${card.title}`}
                 className="bg-[#f3d299] border-orange border-2 p-2 w-full text-center font-bold rounded-md"
               >
                 Get Started

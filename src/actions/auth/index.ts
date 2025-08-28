@@ -2,6 +2,7 @@
 
 import { client } from '@/lib/prisma'
 import { currentUser, redirectToSignIn } from '@clerk/nextjs'
+import { redirect } from 'next/navigation'
 import { onGetAllAccountDomains } from '../settings'
 
 export const onCompleteUserRegistration = async (
@@ -36,7 +37,7 @@ export const onCompleteUserRegistration = async (
 
 export const onLoginUser = async () => {
   const user = await currentUser()
-  if (!user) redirectToSignIn()
+  if (!user) redirectToSignIn({ returnBackUrl: '/dashboard' })
   else {
     try {
       const authenticated = await client.user.findUnique({
@@ -53,6 +54,8 @@ export const onLoginUser = async () => {
         const domains = await onGetAllAccountDomains()
         return { status: 200, user: authenticated, domain: domains?.domains }
       }
+      // If the Clerk user exists but no DB user, send to sign-up to complete profile
+      return redirect('/auth/sign-up')
     } catch (error) {
       return { status: 400 }
     }

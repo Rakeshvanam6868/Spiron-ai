@@ -1,4 +1,5 @@
 import { onLoginUser } from '@/actions/auth'
+import { redirect } from 'next/navigation'
 import SideBar from '@/components/sidebar'
 import { ChatProvider } from '@/context/user-chat-context'
 import React from 'react'
@@ -9,7 +10,7 @@ type Props = {
 
 const OwnerLayout = async ({ children }: Props) => {
   const authenticated = await onLoginUser()
-  if (!authenticated) return null
+  if (!authenticated) return redirect('/auth/sign-in')
 
   return (
     <ChatProvider>
