@@ -29,30 +29,37 @@ export default async function Home() {
     | undefined = await onGetBlogPosts()
   console.log(posts)
   return (
-    <main>
+    <main className='bg-orange/5'>
       <NavBar />
       <section>
-        <div className="flex items-center justify-center flex-col mt-[80px] gap-4 ">
-          <span className="text-orange bg-orange/20 px-4 py-2 rounded-full text-sm">
+        <div className="flex items-center justify-center flex-col mt-[120px] gap-10 ">
+          <span className="text-orange mt-5 bg-orange/10 border-4 border-white px-4 py-2 z-0 drop-shadow-lg leading-2  uppercase rounded-full text-sm">
             An AI powered sales assistant chatbot
           </span>
-          <Image
+          {/* <Image
             src="/images/corinna-ai-logo.png"
             width={500}
             height={100}
             alt="Logo"
             className="max-w-lg object-contain"
-          />
-          <p className="text-center max-w-[500px]">
+          /> */}
+          <p className='mx-20 text-center'>
+            <span className="text-4xl mt-5 md:text-7xl flex flex-col text-black/75 font-bold text-center">
+              <span >Boost your sales with</span>  
+              <span className='mt-4'>Spiron AI</span> 
+            </span>
+          </p>
+          <p className="text-center text-lg text-zinc-700 max-w-[500px]">
             Your AI powered sales assistant! Embed Spiron AI into any website
             with just a snippet of code!
           </p>
-          
-          <Button className="bg-orange font-bold text-white px-4" >
+        
+          <Button className="bg-orange font-bold  text-white px-4" >
             <Link rel="stylesheet" href="/dashboard">
             Start For Free
             </Link>
           </Button>
+       
           <Image
             src="/images/iphonecorinna.png"
             width={400}
