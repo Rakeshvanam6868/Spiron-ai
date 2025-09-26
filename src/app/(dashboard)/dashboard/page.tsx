@@ -14,7 +14,7 @@ import CalIcon from '@/icons/cal-icon'
 import EmailIcon from '@/icons/email-icon'
 import PersonIcon from '@/icons/person-icon'
 import { TransactionsIcon } from '@/icons/transactions-icon'
-import { DollarSign } from 'lucide-react'
+import { IndianRupee } from 'lucide-react'
 import React from 'react'
 
 type Props = {}
@@ -39,9 +39,9 @@ const Page = async (props: Props) => {
           />
           <DashboardCard
             value={products! * clients! || 0}
-            sales
+            // sales
             title="Pipline Value"
-            icon={<DollarSign />}
+            icon={<IndianRupee />}
           />
           <DashboardCard
             value={bookings || 0}
@@ -50,9 +50,9 @@ const Page = async (props: Props) => {
           />
           <DashboardCard
             value={sales || 0}
-            sales
+            // sales
             title="Total Sales"
-            icon={<DollarSign />}
+            icon={<IndianRupee/>}
           />
         </div>
         <div className="w-full grid grid-cols-1 lg:grid-cols-2 py-10">

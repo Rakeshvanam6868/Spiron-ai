@@ -6,6 +6,7 @@ import { LogOut, MonitorSmartphone } from 'lucide-react'
 import { MenuLogo } from '@/icons/menu-logo'
 import MenuItem from './menu-item'
 import DomainMenu from './domain-menu'
+import Image from 'next/image'
 
 type MinMenuProps = {
   onShrink(): void
@@ -30,7 +31,14 @@ export const MinMenu = ({
   return (
     <div className="p-3 flex flex-col items-center h-full">
       <span className="animate-fade-in opacity-0 delay-300 fill-mode-forwards cursor-pointer">
-        <MenuLogo onClick={onShrink} />
+        <Image
+          src="/images/favicon.png"
+          width={40}
+          height={40}
+          alt="Logo"
+          onClick={onShrink}
+          className="max-w-lg object-contain"
+        ></Image>
       </span>
       <div className="animate-fade-in opacity-0 delay-300 fill-mode-forwards flex flex-col justify-between h-full pt-10">
         <div className="flex flex-col">

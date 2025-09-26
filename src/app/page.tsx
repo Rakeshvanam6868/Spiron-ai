@@ -16,6 +16,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import parse from 'html-react-parser'
 import { getMonthName } from '@/lib/utils'
+import Footer from '@/components/Footer'
 
 export default async function Home() {
   const posts:
@@ -71,7 +72,7 @@ export default async function Home() {
       </section>
       <section className="flex justify-center items-center flex-col gap-4 mt-10">
         <h2 className="text-4xl text-center"> Choose what fits you right</h2>
-        <p className="text-muted-foreground text-center max-w-lg">
+        <p className="text-muted-foreground text-lg text-zinc-700 text-center max-w-lg">
           Our straightforward pricing plans are tailored to meet your needs. If
           {" you're"} not ready to commit you can get started for free.
         </p>
@@ -80,7 +81,7 @@ export default async function Home() {
         {pricingCards.map((card) => (
           <Card
             key={card.title}
-            className={clsx('w-[300px] flex flex-col justify-between', {
+            className={clsx('w-[300px] bg-orange/5 backdrop-blur-md shadow-xl/20 flex flex-col justify-between', {
               'border-2 border-primary': card.title === 'Unlimited',
             })}
           >
@@ -119,7 +120,7 @@ export default async function Home() {
         ))}
       </div>
 
-      <section className="flex justify-center items-center flex-col gap-4 mt-28">
+      {/* <section className="flex justify-center items-center flex-col gap-4 mt-28">
         <h2 className="text-4xl text-center">News Room</h2>
         <p className="text-muted-foreground text-center max-w-lg">
           Explore our insights on AI, technology, and optimizing your business.
@@ -151,6 +152,10 @@ export default async function Home() {
               </Card>
             </Link>
           ))}
+      </section> */}
+
+      <section className="bg-gradient-to-b from-orange/10 backdrop-blur-md to-white mt-28 py-10">
+        <Footer/>
       </section>
     </main>
   )
